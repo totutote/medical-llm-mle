@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  medical-llm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: medical-llm-mle:latest
+    container_name: medical-llm-mle
+    
+    # GPU設定
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    
+    # 環境変数
+    env_file:
+      - .env
+      - .env.secrets
+    
+    # ボリュームマウント
+    volumes:
+      - .:/workspace
+      - ./data:/workspace/data
+      - ./checkpoints:/workspace/checkpoints
+      - ./results:/workspace/results
+      - huggingface-cache:/root/.cache/huggingface
+    
+    # 共有メモリサイズの設定（PyTorchのDataLoader用）
+    shm_size: '8gb'
+    
+    # ポートマッピング（TensorBoard用）
+    ports:
+      - "6006:6006"  # TensorBoard
+      - "8888:8888"  # Jupyter Lab (オプション)
+    
+    # 常時起動
+    stdin_open: true
+    tty: true
+    
+    # ネットワーク設定
+    networks:
+      - medical-llm-network
+    
+    # 起動コマンド
+    command: /bin/bash
+
+  # オプション: Jupyter Lab サービス
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: medical-llm-mle:latest
+    container_name: medical-llm-jupyter
+    
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    
+    env_file:
+      - .env
+      - .env.secrets
+    
+    volumes:
+      - .:/workspace
+      - ./data:/workspace/data
+      - ./checkpoints:/workspace/checkpoints
+      - ./results:/workspace/results
+      - huggingface-cache:/root/.cache/huggingface
+    
+    shm_size: '8gb'
+    
+    ports:
+      - "8888:8888"
+    
+    networks:
+      - medical-llm-network
+    
+    working_dir: /workspace
+    
+    command: >
+      bash -c "pip install jupyterlab &&
+               jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+               --NotebookApp.token='' --NotebookApp.password=''"
+    
+    profiles:
+      - jupyter
+
+networks:
+  medical-llm-network:
+    driver: bridge
+
+volumes:
+  huggingface-cache:
+    driver: local

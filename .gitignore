@@ -1,3 +1,7 @@
+# Environment (シークレット情報のみ除外)
+.env.secrets
+venv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -5,6 +9,26 @@ __pycache__/
 
 # C extensions
 *.so
+
+# Models & Data
+models/
+checkpoints/
+*.bin
+*.safetensors
+data/raw/
+data/generated/
+*.parquet
+
+# Logs & Results
+logs/
+runs/
+results/
+*.log
+wandb/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
 
 # Distribution / packaging
 .Python
@@ -135,7 +159,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .envrc
 .venv
 env/
