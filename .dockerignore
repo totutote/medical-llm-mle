@@ -1,0 +1,64 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Models & Data (ビルド時は除外、実行時はマウント)
+models/
+checkpoints/
+data/raw/
+data/generated/
+*.bin
+*.safetensors
+*.parquet
+
+# Logs & Results
+logs/
+runs/
+results/
+*.log
+wandb/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Dev Container
+.devcontainer/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Environment
+.env
+.env.local
+
+# Documentation
+*.md
+!README.md
