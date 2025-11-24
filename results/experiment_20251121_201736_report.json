@@ -1,0 +1,79 @@
+{
+  "experiment_id": "20251121_201736",
+  "base_model": "Qwen/Qwen3-0.6B",
+  "num_iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_0_20251121_111749/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.34,
+          "std": 0.20591260281973994,
+          "min": 0.1,
+          "max": 0.6
+        },
+        "harmful_rate": 0.0,
+        "harmful_count": 0,
+        "accuracy_rate": 0.0,
+        "correct_count": 0,
+        "label_distribution": {
+          "partially_correct": 6,
+          "incorrect": 9
+        }
+      },
+      "result_path": "results/iteration_0_evaluation.json",
+      "timestamp": "2025-11-21T20:22:17.846029+09:00"
+    },
+    {
+      "iteration": 1,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_1_20251121_112226/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.1,
+          "std": 0.08164965809277262,
+          "min": 0.0,
+          "max": 0.2
+        },
+        "harmful_rate": 0.0,
+        "harmful_count": 0,
+        "accuracy_rate": 0.0,
+        "correct_count": 0,
+        "label_distribution": {
+          "incorrect": 15
+        }
+      },
+      "result_path": "results/iteration_1_evaluation.json",
+      "timestamp": "2025-11-21T20:26:27.819051+09:00"
+    },
+    {
+      "iteration": 2,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_2_20251121_112636/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.26,
+          "std": 0.20591260281974003,
+          "min": 0.0,
+          "max": 0.6
+        },
+        "harmful_rate": 0.06666666666666667,
+        "harmful_count": 1,
+        "accuracy_rate": 0.0,
+        "correct_count": 0,
+        "label_distribution": {
+          "partially_correct": 4,
+          "incorrect": 11
+        }
+      },
+      "result_path": "results/iteration_2_evaluation.json",
+      "timestamp": "2025-11-21T20:30:58.570376+09:00"
+    }
+  ],
+  "timestamp": "2025-11-21T20:30:58.571823+09:00"
+}

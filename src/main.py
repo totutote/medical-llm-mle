@@ -384,65 +384,6 @@ class IterativeTrainingLoop:
         
         return str(output_path)
     
-    def merge_training_data(self, original_data_path: str, incorrect_samples: List[Dict], iteration: int) -> str:
-        """元のデータと間違えたケースをマージ（互換性のため残す）
-        
-        正答していた問題のデータはそのまま保持し、
-        間違えた問題のデータだけをChatGPTの正しい答えで差し替えます。
-        
-        Args:
-            original_data_path: 元のトレーニングデータのパス
-            incorrect_samples: 間違えたケースのリスト
-            iteration: 現在のiteration番号
-        
-        Returns:
-            マージされたデータのパス
-        """
-        # 元のデータを読み込み
-        original_samples = []
-        with open(original_data_path, "r", encoding="utf-8") as f:
-            for line in f:
-                original_samples.append(json.loads(line))
-        
-        # 間違えた症状のセットを作成
-        incorrect_symptoms = {sample['symptom'] for sample in incorrect_samples if 'symptom' in sample}
-        
-        # 正答していたデータを保持
-        merged_samples = []
-        
-        # 元のデータから、間違えていない問題だけを保持
-        for original in original_samples:
-            # instructionから症状を抽出（簡易的なマッチング）
-            instruction = original.get('instruction', '')
-            # 症状が間違えたケースに含まれていないか確認
-            is_incorrect = any(symptom in instruction for symptom in incorrect_symptoms)
-            
-            if not is_incorrect:
-                merged_samples.append(original)
-        
-        # 間違えたケースを追加（ChatGPTの正しい答えで）
-        for incorrect in incorrect_samples:
-            # symptomフィールドを削除（学習データには不要）
-            clean_sample = {
-                "instruction": incorrect['instruction'],
-                "input": incorrect['input'],
-                "output": incorrect['output']
-            }
-            merged_samples.append(clean_sample)
-        
-        # マージされたデータを保存
-        output_path = self.data_dir / f"training_data_iteration_{iteration}.jsonl"
-        with open(output_path, "w", encoding="utf-8") as f:
-            for sample in merged_samples:
-                f.write(json.dumps(sample, ensure_ascii=False) + "\n")
-        
-        print(f"  マージされた教師データ保存: {output_path}")
-        print(f"    - 正答していた問題（保持）: {len(merged_samples) - len(incorrect_samples)}件")
-        print(f"    - 間違えた問題（差し替え）: {len(incorrect_samples)}件")
-        print(f"    - 合計: {len(merged_samples)}件")
-        
-        return str(output_path)
-    
     def run(self):
         """反復学習ループの実行"""
         

@@ -22,7 +22,6 @@ data/generated/
 # Logs & Results
 logs/
 runs/
-results/
 *.log
 wandb/
 

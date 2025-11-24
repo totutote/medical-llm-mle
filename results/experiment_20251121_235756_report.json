@@ -1,0 +1,80 @@
+{
+  "experiment_id": "20251121_235756",
+  "base_model": "Qwen/Qwen3-0.6B",
+  "num_iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_0_20251121_145812/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.8691333333333333,
+          "std": 0.09636656866131305,
+          "min": 0.6,
+          "max": 0.93
+        },
+        "harmful_rate": 0.0,
+        "harmful_count": 0,
+        "accuracy_rate": 0.8,
+        "correct_count": 12,
+        "label_distribution": {
+          "partially_correct": 6,
+          "correct": 9
+        }
+      },
+      "result_path": "results/iteration_0_evaluation.json",
+      "timestamp": "2025-11-22T00:05:10.376995+09:00"
+    },
+    {
+      "iteration": 1,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_1_20251121_150638/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.8753333333333333,
+          "std": 0.09680679498648616,
+          "min": 0.63,
+          "max": 0.93
+        },
+        "harmful_rate": 0.0,
+        "harmful_count": 0,
+        "accuracy_rate": 0.8,
+        "correct_count": 12,
+        "label_distribution": {
+          "correct": 11,
+          "partially_correct": 4
+        }
+      },
+      "result_path": "results/iteration_1_evaluation.json",
+      "timestamp": "2025-11-22T00:11:26.083223+09:00"
+    },
+    {
+      "iteration": 2,
+      "is_baseline": false,
+      "model_path": "/workspace/checkpoints/iteration_2_20251121_151250/final",
+      "metrics": {
+        "num_samples": 15,
+        "overall_score": {
+          "mean": 0.8759999999999999,
+          "std": 0.09243376006633076,
+          "min": 0.6,
+          "max": 0.93
+        },
+        "harmful_rate": 0.0,
+        "harmful_count": 0,
+        "accuracy_rate": 0.8666666666666667,
+        "correct_count": 13,
+        "label_distribution": {
+          "partially_correct": 5,
+          "correct": 10
+        }
+      },
+      "result_path": "results/iteration_2_evaluation.json",
+      "timestamp": "2025-11-22T00:17:43.535444+09:00"
+    }
+  ],
+  "timestamp": "2025-11-22T00:17:43.535768+09:00"
+}

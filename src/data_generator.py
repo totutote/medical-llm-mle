@@ -25,17 +25,19 @@ def format_medications_list(medications: list) -> str:
     Args:
         medications: 薬剤辞書のリスト [{'name': str, 'reason': str}, ...] (最大3件)
     Returns:
-        番号付き箇条書きテキスト
+        番号付き箇条書きテキスト + EOSトークン
     """
     meds = medications[:3]
     medications_parts = []
     if len(meds) > 0:
-        medications_parts.append(f"{meds[0]['name']} - {meds[0]['reason']}")
+        medications_parts.append(f"1. {meds[0]['name']} - {meds[0]['reason']}")
     if len(meds) > 1:
         medications_parts.append(f"2. {meds[1]['name']} - {meds[1]['reason']}")
     if len(meds) > 2:
         medications_parts.append(f"3. {meds[2]['name']} - {meds[2]['reason']}")
-    return "\n".join(medications_parts)
+    
+    # Qwenのim_endトークンを追加して、モデルに出力終了を明示
+    return "\n".join(medications_parts) + "<|im_end|>"
 
 """
 医療症状→薬剤候補データセットの生成と管理
