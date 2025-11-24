@@ -35,4 +35,4 @@ docker-compose exec medical-llm bash
 python src/main.py
 ```
 
-開発ではdevcontainerを使用しているのでこのdevcontainerでも起動できます
+開発ではdevcontainerを使用しているので、devcontainerしをうしても起動できます
