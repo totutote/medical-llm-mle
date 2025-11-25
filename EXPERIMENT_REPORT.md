@@ -747,12 +747,6 @@ OpenAI: 1.0+
 cp .env.example .env
 # .envを編集
 
-# 実行
-cd src
-python main.py
-```
-
----
 
 **ベースモデル**: Qwen/Qwen3-0.6B
 **評価モデル**: GPT-4.1-mini
@@ -789,3 +783,9 @@ python main.py
 
 **課題要求との関係:**
 - 課題文にない **「入力の揺れ」の要素を考慮せず、「分析・考察」** で出力形式の頑健性を問うべき
+
+
+# 実行
+cd src
+python main.py
+```
